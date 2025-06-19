@@ -53,14 +53,15 @@ function renderFridgeList() {
             delBtn.innerHTML = '✖';
             delBtn.onclick = (e) => {
                 e.stopPropagation();
-                if (confirm('Вы уверены, что хотите удалить этот холодильник?')) {
+                showConfirmModal('Вы уверены, что хотите удалить этот холодильник?', function() {
                     deleteFridge(name);
-                }
+                });
             };
             li.appendChild(delBtn);
         }
         ul.appendChild(li);
     });
+    updateCurrentFridgeName();
 }
 function deleteFridge(name) {
     let fridges = getFridges();
@@ -154,6 +155,19 @@ function renderAllCategories() {
     categories.forEach(renderCategory);
 }
 
+let confirmCallback = null;
+function showConfirmModal(message, onYes) {
+    const modal = document.getElementById('modal-confirm');
+    modal.querySelector('.modal-message').textContent = message;
+    modal.style.display = 'flex';
+    confirmCallback = onYes;
+}
+
+function updateCurrentFridgeName() {
+    const el = document.getElementById('current-fridge-name');
+    if (el) el.textContent = 'Текущий холодильник: ' + getActiveFridge();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     renderAllCategories();
     // Тема
@@ -213,4 +227,13 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     renderFridgeList();
     console.log('Страница загружена и готова к работе!');
+    document.getElementById('modal-yes').onclick = function() {
+        document.getElementById('modal-confirm').style.display = 'none';
+        if (typeof confirmCallback === 'function') confirmCallback();
+    };
+    document.getElementById('modal-no').onclick = function() {
+        document.getElementById('modal-confirm').style.display = 'none';
+        confirmCallback = null;
+    };
+    updateCurrentFridgeName();
 }); 
