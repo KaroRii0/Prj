@@ -213,6 +213,7 @@ p {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    gap: 12px;
 }
 #theme-toggle {
     position: static;
@@ -281,4 +282,105 @@ body.dark-theme .delete-btn:hover, body.dark-theme .delete-btn:focus {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.fridge-list-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+#fridge-list-toggle {
+    background: #fff;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin-right: 8px;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+body.dark-theme #fridge-list-toggle {
+    background: #23272f;
+    color: #e0e3e8;
+    border: 1px solid #444b5a;
+}
+.fridge-list-dropdown {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    min-width: 220px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    padding: 12px 10px 8px 10px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+body.dark-theme .fridge-list-dropdown {
+    background: #23272f;
+    color: #e0e3e8;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+#fridge-list {
+    list-style: none;
+    margin: 0 0 8px 0;
+    padding: 0;
+    max-height: 180px;
+    overflow-y: auto;
+}
+#fridge-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+    gap: 8px;
+}
+.fridge-delete-btn {
+    background: transparent;
+    border: none;
+    color: #b71c1c;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.15s, color 0.15s;
+    padding: 2px 6px;
+}
+.fridge-delete-btn:hover, .fridge-delete-btn:focus {
+    background: #ffeaea;
+    color: #fff;
+    background: #e57373;
+}
+body.dark-theme .fridge-delete-btn {
+    color: #ff8a80;
+}
+body.dark-theme .fridge-delete-btn:hover, body.dark-theme .fridge-delete-btn:focus {
+    background: #b71c1c;
+    color: #fff;
+}
+#fridge-add-form {
+    display: flex;
+    gap: 6px;
+}
+#fridge-add-input {
+    flex: 1 1 auto;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+body.dark-theme #fridge-add-input {
+    background: #23272f;
+    color: #e0e3e8;
+    border: 1px solid #444b5a;
+}
+#fridge-add-form button[type="submit"] {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
 } 
