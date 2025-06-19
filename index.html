@@ -9,6 +9,21 @@
 <body>
     <h1>Добро пожаловать!</h1>
     <p>Это базовая заготовка для проекта на HTML, CSS и JS.</p>
+    <h2>Категории продуктов</h2>
+    <div class="category">
+        <div class="category-header">
+            <span>Молочные продукты</span>
+            <button class="add-btn" onclick="toggleForm('dairy')">+</button>
+        </div>
+        <ul class="product-list" id="list-dairy"></ul>
+        <form class="add-form" id="form-dairy" style="display:none;" onsubmit="addProduct(event, 'dairy')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('dairy')">Отмена</button>
+        </form>
+    </div>
     <script src="script.js"></script>
 </body>
 </html> 
