@@ -1,10 +1,19 @@
 function toggleForm(category) {
     const form = document.getElementById('form-' + category);
-    if (form.style.display === 'none' || form.style.display === '') {
-        form.style.display = 'flex';
-    } else {
+    // Собираем все открытые формы
+    const openForms = Array.from(document.querySelectorAll('.add-form'))
+        .filter(f => f.style.display === 'flex');
+    // Если форма уже открыта — просто закрываем
+    if (form.style.display === 'flex') {
         form.style.display = 'none';
+        return;
     }
+    // Если открыто 3 формы, закрываем самую первую
+    if (openForms.length >= 3) {
+        openForms[0].style.display = 'none';
+    }
+    // Открываем нужную форму
+    form.style.display = 'flex';
 }
 
 function getStorage() {
