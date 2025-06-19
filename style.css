@@ -92,4 +92,11 @@ p {
     .categories-grid {
         grid-template-columns: 1fr;
     }
+}
+.categories-title {
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    font-size: 1.5em;
+    color: #3366cc;
 } 
