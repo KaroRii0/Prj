@@ -473,6 +473,11 @@ body.dark-theme .current-fridge {
     color: #b3c7f9;
 }
 
+.fridge-actions {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
 .fridge-edit-btn {
     background: transparent;
     border: none;
@@ -482,7 +487,6 @@ body.dark-theme .current-fridge {
     border-radius: 50%;
     transition: background 0.15s, color 0.15s;
     padding: 2px 6px;
-    margin-left: 2px;
 }
 .fridge-edit-btn:hover, .fridge-edit-btn:focus {
     background: #e3eaff;
