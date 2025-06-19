@@ -243,4 +243,29 @@ body.dark-theme #theme-toggle:hover, body.dark-theme #theme-toggle:focus {
     background: #2d3440;
     color: #b3c7f9;
     border: 1.5px solid #b3c7f9;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #b71c1c;
+    font-size: 1.1em;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.15s, color 0.15s;
+    padding: 2px 6px;
+    vertical-align: middle;
+}
+.delete-btn:hover, .delete-btn:focus {
+    background: #ffeaea;
+    color: #fff;
+    background: #e57373;
+}
+body.dark-theme .delete-btn {
+    color: #ff8a80;
+}
+body.dark-theme .delete-btn:hover, body.dark-theme .delete-btn:focus {
+    background: #b71c1c;
+    color: #fff;
 } 
