@@ -25,6 +25,7 @@ function getActiveFridge() {
 function setActiveFridge(name) {
     localStorage.setItem('activeFridge', name);
 }
+let editingFridge = null;
 function renderFridgeList() {
     const ul = document.getElementById('fridge-list');
     const fridges = getFridges();
@@ -32,32 +33,83 @@ function renderFridgeList() {
     ul.innerHTML = '';
     fridges.forEach(name => {
         const li = document.createElement('li');
-        const span = document.createElement('span');
-        span.textContent = name;
-        span.style.cursor = 'pointer';
-        if (name === active) {
-            span.style.fontWeight = 'bold';
-            span.style.color = '#3366cc';
-        }
-        span.onclick = () => {
-            setActiveFridge(name);
-            renderFridgeList();
-            renderAllCategories();
-            closeFridgeDropdown();
-        };
-        li.appendChild(span);
-        if (fridges.length > 1) {
-            const delBtn = document.createElement('button');
-            delBtn.className = 'fridge-delete-btn';
-            delBtn.title = 'Удалить холодильник';
-            delBtn.innerHTML = '✖';
-            delBtn.onclick = (e) => {
-                e.stopPropagation();
-                showConfirmModal('Вы уверены, что хотите удалить этот холодильник?', function() {
-                    deleteFridge(name);
-                });
+        if (editingFridge === name) {
+            // Режим редактирования
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = name;
+            input.className = 'fridge-edit-input';
+            input.autofocus = true;
+            const saveBtn = document.createElement('button');
+            saveBtn.textContent = 'Сохранить';
+            saveBtn.className = 'fridge-edit-btn';
+            saveBtn.onclick = () => {
+                const newName = input.value.trim();
+                if (!newName || newName === name) { editingFridge = null; renderFridgeList(); return; }
+                let fridgesArr = getFridges();
+                if (fridgesArr.includes(newName)) {
+                    alert('Холодильник с таким названием уже есть!');
+                    return;
+                }
+                // Переименовываем в localStorage
+                const all = JSON.parse(localStorage.getItem('fridgeProductsAll') || '{}');
+                all[newName] = all[name] || {};
+                delete all[name];
+                localStorage.setItem('fridgeProductsAll', JSON.stringify(all));
+                fridgesArr = fridgesArr.map(f => f === name ? newName : f);
+                setFridges(fridgesArr);
+                if (active === name) setActiveFridge(newName);
+                editingFridge = null;
+                renderFridgeList();
+                renderAllCategories();
             };
-            li.appendChild(delBtn);
+            const cancelBtn = document.createElement('button');
+            cancelBtn.textContent = 'Отмена';
+            cancelBtn.className = 'fridge-edit-btn';
+            cancelBtn.onclick = () => { editingFridge = null; renderFridgeList(); };
+            li.appendChild(input);
+            li.appendChild(saveBtn);
+            li.appendChild(cancelBtn);
+        } else {
+            const span = document.createElement('span');
+            span.textContent = name;
+            span.style.cursor = 'pointer';
+            if (name === active) {
+                span.style.fontWeight = 'bold';
+                span.style.color = '#3366cc';
+            }
+            span.onclick = () => {
+                setActiveFridge(name);
+                renderFridgeList();
+                renderAllCategories();
+                closeFridgeDropdown();
+            };
+            li.appendChild(span);
+            // Кнопка редактирования
+            const editBtn = document.createElement('button');
+            editBtn.className = 'fridge-edit-btn';
+            editBtn.title = 'Переименовать холодильник';
+            editBtn.innerHTML = '✏️';
+            editBtn.onclick = (e) => {
+                e.stopPropagation();
+                editingFridge = name;
+                renderFridgeList();
+            };
+            li.appendChild(editBtn);
+            // Кнопка удаления
+            if (fridges.length > 1) {
+                const delBtn = document.createElement('button');
+                delBtn.className = 'fridge-delete-btn';
+                delBtn.title = 'Удалить холодильник';
+                delBtn.innerHTML = '✖';
+                delBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    showConfirmModal('Вы уверены, что хотите удалить этот холодильник?', function() {
+                        deleteFridge(name);
+                    });
+                };
+                li.appendChild(delBtn);
+            }
         }
         ul.appendChild(li);
     });
