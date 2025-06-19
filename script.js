@@ -1,19 +1,15 @@
 function toggleForm(category) {
     const form = document.getElementById('form-' + category);
-    // Собираем все открытые формы
-    const openForms = Array.from(document.querySelectorAll('.add-form'))
-        .filter(f => f.style.display === 'flex');
-    // Если форма уже открыта — просто закрываем
+    // Закрываем все формы
+    document.querySelectorAll('.add-form').forEach(f => {
+        if (f !== form) f.style.display = 'none';
+    });
+    // Переключаем текущую форму
     if (form.style.display === 'flex') {
         form.style.display = 'none';
-        return;
+    } else {
+        form.style.display = 'flex';
     }
-    // Если открыто 3 формы, закрываем самую первую
-    if (openForms.length >= 3) {
-        openForms[0].style.display = 'none';
-    }
-    // Открываем нужную форму
-    form.style.display = 'flex';
 }
 
 function getStorage() {
