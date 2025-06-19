@@ -85,6 +85,9 @@ function renderFridgeList() {
                 closeFridgeDropdown();
             };
             li.appendChild(span);
+            // Кнопки справа
+            const actions = document.createElement('div');
+            actions.className = 'fridge-actions';
             // Кнопка редактирования
             const editBtn = document.createElement('button');
             editBtn.className = 'fridge-edit-btn';
@@ -95,7 +98,7 @@ function renderFridgeList() {
                 editingFridge = name;
                 renderFridgeList();
             };
-            li.appendChild(editBtn);
+            actions.appendChild(editBtn);
             // Кнопка удаления
             if (fridges.length > 1) {
                 const delBtn = document.createElement('button');
@@ -108,8 +111,9 @@ function renderFridgeList() {
                         deleteFridge(name);
                     });
                 };
-                li.appendChild(delBtn);
+                actions.appendChild(delBtn);
             }
+            li.appendChild(actions);
         }
         ul.appendChild(li);
     });
