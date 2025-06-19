@@ -204,4 +204,29 @@ p {
     position: static;
     margin-right: 24px;
     margin-top: 0;
+    background: #fff;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+#theme-toggle:hover, #theme-toggle:focus {
+    background: #f0f4fa;
+    color: #254a91;
+    border: 1.5px solid #3366cc;
+}
+body.dark-theme #theme-toggle {
+    background: #23272f;
+    color: #e0e3e8;
+    border: 1px solid #444b5a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+body.dark-theme #theme-toggle:hover, body.dark-theme #theme-toggle:focus {
+    background: #2d3440;
+    color: #b3c7f9;
+    border: 1.5px solid #b3c7f9;
 } 
