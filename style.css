@@ -63,6 +63,8 @@ p {
     margin: 0;
     max-width: 400px;
     padding: 16px;
+    position: relative;
+    overflow: visible;
 }
 .category-header {
     display: flex;
@@ -101,6 +103,15 @@ p {
     flex-direction: column;
     gap: 8px;
     margin-top: 8px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: inherit;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    padding: 16px;
 }
 .add-form input {
     padding: 6px 10px;
@@ -181,6 +192,9 @@ p {
     }
     #theme-toggle {
         margin-right: 8px;
+    }
+    .add-form {
+        padding: 10px 4px;
     }
 }
 .categories-title {
