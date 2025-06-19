@@ -28,13 +28,17 @@ function renderCategory(category) {
     const items = data[category] || [];
     items.forEach((item, idx) => {
         const li = document.createElement('li');
-        li.textContent = item;
+        li.className = 'product-item';
+        const textSpan = document.createElement('span');
+        textSpan.className = 'product-text';
+        textSpan.textContent = item;
         // Кнопка удаления
         const delBtn = document.createElement('button');
         delBtn.className = 'delete-btn';
         delBtn.title = 'Удалить';
         delBtn.innerHTML = '✖';
         delBtn.onclick = function() { deleteProduct(category, idx); };
+        li.appendChild(textSpan);
         li.appendChild(delBtn);
         list.appendChild(li);
     });
