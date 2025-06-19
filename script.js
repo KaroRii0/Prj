@@ -12,12 +12,87 @@ function toggleForm(category) {
     }
 }
 
-function getStorage() {
-    return JSON.parse(localStorage.getItem('fridgeProducts') || '{}');
+// --- Холодильники ---
+function getFridges() {
+    return JSON.parse(localStorage.getItem('fridges') || '["Мой холодильник"]');
 }
-
+function setFridges(arr) {
+    localStorage.setItem('fridges', JSON.stringify(arr));
+}
+function getActiveFridge() {
+    return localStorage.getItem('activeFridge') || getFridges()[0] || 'Мой холодильник';
+}
+function setActiveFridge(name) {
+    localStorage.setItem('activeFridge', name);
+}
+function renderFridgeList() {
+    const ul = document.getElementById('fridge-list');
+    const fridges = getFridges();
+    const active = getActiveFridge();
+    ul.innerHTML = '';
+    fridges.forEach(name => {
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        span.textContent = name;
+        span.style.cursor = 'pointer';
+        if (name === active) {
+            span.style.fontWeight = 'bold';
+            span.style.color = '#3366cc';
+        }
+        span.onclick = () => {
+            setActiveFridge(name);
+            renderFridgeList();
+            renderAllCategories();
+            closeFridgeDropdown();
+        };
+        li.appendChild(span);
+        if (fridges.length > 1) {
+            const delBtn = document.createElement('button');
+            delBtn.className = 'fridge-delete-btn';
+            delBtn.title = 'Удалить холодильник';
+            delBtn.innerHTML = '✖';
+            delBtn.onclick = (e) => {
+                e.stopPropagation();
+                if (confirm('Вы уверены, что хотите удалить этот холодильник?')) {
+                    deleteFridge(name);
+                }
+            };
+            li.appendChild(delBtn);
+        }
+        ul.appendChild(li);
+    });
+}
+function deleteFridge(name) {
+    let fridges = getFridges();
+    fridges = fridges.filter(f => f !== name);
+    setFridges(fridges);
+    // Удаляем продукты этого холодильника
+    const all = JSON.parse(localStorage.getItem('fridgeProductsAll') || '{}');
+    delete all[name];
+    localStorage.setItem('fridgeProductsAll', JSON.stringify(all));
+    // Переключаемся на первый оставшийся
+    setActiveFridge(fridges[0]);
+    renderFridgeList();
+    renderAllCategories();
+}
+function closeFridgeDropdown() {
+    document.getElementById('fridge-list-dropdown').style.display = 'none';
+}
+function openFridgeDropdown() {
+    document.getElementById('fridge-list-dropdown').style.display = 'flex';
+    renderFridgeList();
+}
+// --- Продукты с учётом холодильника ---
+function getStorage() {
+    const all = JSON.parse(localStorage.getItem('fridgeProductsAll') || '{}');
+    const fridge = getActiveFridge();
+    return all[fridge] || {};
+}
 function setStorage(data) {
-    localStorage.setItem('fridgeProducts', JSON.stringify(data));
+    const all = JSON.parse(localStorage.getItem('fridgeProductsAll') || '{}');
+    const fridge = getActiveFridge();
+    all[fridge] = data;
+    localStorage.setItem('fridgeProductsAll', JSON.stringify(all));
 }
 
 function renderCategory(category) {
@@ -92,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
             themeBtn.textContent = '🌙 Тёмная тема';
         }
     }
-    // Проверяем localStorage или системную тему
     let theme = localStorage.getItem('theme');
     if (!theme) {
         theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -104,5 +178,39 @@ document.addEventListener('DOMContentLoaded', function() {
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
     });
+    // Холодильники
+    const fridgeToggle = document.getElementById('fridge-list-toggle');
+    const fridgeDropdown = document.getElementById('fridge-list-dropdown');
+    fridgeToggle.onclick = function() {
+        if (fridgeDropdown.style.display === 'none' || fridgeDropdown.style.display === '') {
+            openFridgeDropdown();
+        } else {
+            closeFridgeDropdown();
+        }
+    };
+    document.addEventListener('click', function(e) {
+        if (!fridgeDropdown.contains(e.target) && e.target !== fridgeToggle) {
+            closeFridgeDropdown();
+        }
+    });
+    document.getElementById('fridge-add-form').onsubmit = function(e) {
+        e.preventDefault();
+        const input = document.getElementById('fridge-add-input');
+        const name = input.value.trim();
+        if (!name) return;
+        let fridges = getFridges();
+        if (fridges.includes(name)) {
+            alert('Холодильник с таким названием уже есть!');
+            return;
+        }
+        fridges.push(name);
+        setFridges(fridges);
+        setActiveFridge(name);
+        renderFridgeList();
+        renderAllCategories();
+        input.value = '';
+        closeFridgeDropdown();
+    };
+    renderFridgeList();
     console.log('Страница загружена и готова к работе!');
 }); 
