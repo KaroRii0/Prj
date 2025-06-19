@@ -24,6 +24,202 @@
             <button type="button" onclick="toggleForm('dairy')">Отмена</button>
         </form>
     </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Овощи и фрукты</span>
+            <button class="add-btn" onclick="toggleForm('vegfruit')">+</button>
+        </div>
+        <ul class="product-list" id="list-vegfruit"></ul>
+        <form class="add-form" id="form-vegfruit" style="display:none;" onsubmit="addProduct(event, 'vegfruit')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('vegfruit')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Мясо и птица</span>
+            <button class="add-btn" onclick="toggleForm('meat')">+</button>
+        </div>
+        <ul class="product-list" id="list-meat"></ul>
+        <form class="add-form" id="form-meat" style="display:none;" onsubmit="addProduct(event, 'meat')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('meat')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Рыба и морепродукты</span>
+            <button class="add-btn" onclick="toggleForm('fish')">+</button>
+        </div>
+        <ul class="product-list" id="list-fish"></ul>
+        <form class="add-form" id="form-fish" style="display:none;" onsubmit="addProduct(event, 'fish')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('fish')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Колбасы и мясные деликатесы</span>
+            <button class="add-btn" onclick="toggleForm('sausage')">+</button>
+        </div>
+        <ul class="product-list" id="list-sausage"></ul>
+        <form class="add-form" id="form-sausage" style="display:none;" onsubmit="addProduct(event, 'sausage')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('sausage')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Сыры</span>
+            <button class="add-btn" onclick="toggleForm('cheese')">+</button>
+        </div>
+        <ul class="product-list" id="list-cheese"></ul>
+        <form class="add-form" id="form-cheese" style="display:none;" onsubmit="addProduct(event, 'cheese')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('cheese')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Яйца</span>
+            <button class="add-btn" onclick="toggleForm('eggs')">+</button>
+        </div>
+        <ul class="product-list" id="list-eggs"></ul>
+        <form class="add-form" id="form-eggs" style="display:none;" onsubmit="addProduct(event, 'eggs')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('eggs')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Соусы и заправки</span>
+            <button class="add-btn" onclick="toggleForm('sauces')">+</button>
+        </div>
+        <ul class="product-list" id="list-sauces"></ul>
+        <form class="add-form" id="form-sauces" style="display:none;" onsubmit="addProduct(event, 'sauces')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('sauces')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Полуфабрикаты</span>
+            <button class="add-btn" onclick="toggleForm('semis')">+</button>
+        </div>
+        <ul class="product-list" id="list-semis"></ul>
+        <form class="add-form" id="form-semis" style="display:none;" onsubmit="addProduct(event, 'semis')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('semis')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Остатки готовой еды</span>
+            <button class="add-btn" onclick="toggleForm('leftovers')">+</button>
+        </div>
+        <ul class="product-list" id="list-leftovers"></ul>
+        <form class="add-form" id="form-leftovers" style="display:none;" onsubmit="addProduct(event, 'leftovers')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('leftovers')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Замороженные продукты</span>
+            <button class="add-btn" onclick="toggleForm('frozen')">+</button>
+        </div>
+        <ul class="product-list" id="list-frozen"></ul>
+        <form class="add-form" id="form-frozen" style="display:none;" onsubmit="addProduct(event, 'frozen')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('frozen')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Масло сливочное и маргарин</span>
+            <button class="add-btn" onclick="toggleForm('butter')">+</button>
+        </div>
+        <ul class="product-list" id="list-butter"></ul>
+        <form class="add-form" id="form-butter" style="display:none;" onsubmit="addProduct(event, 'butter')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('butter')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Йогурты и творожки</span>
+            <button class="add-btn" onclick="toggleForm('yogurt')">+</button>
+        </div>
+        <ul class="product-list" id="list-yogurt"></ul>
+        <form class="add-form" id="form-yogurt" style="display:none;" onsubmit="addProduct(event, 'yogurt')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('yogurt')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Зелень</span>
+            <button class="add-btn" onclick="toggleForm('greens')">+</button>
+        </div>
+        <ul class="product-list" id="list-greens"></ul>
+        <form class="add-form" id="form-greens" style="display:none;" onsubmit="addProduct(event, 'greens')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('greens')">Отмена</button>
+        </form>
+    </div>
+    <div class="category">
+        <div class="category-header">
+            <span>Прочее</span>
+            <button class="add-btn" onclick="toggleForm('other')">+</button>
+        </div>
+        <ul class="product-list" id="list-other"></ul>
+        <form class="add-form" id="form-other" style="display:none;" onsubmit="addProduct(event, 'other')">
+            <input type="text" name="name" placeholder="Название продукта" required>
+            <input type="text" name="expiry" placeholder="Срок годности (необязательно)">
+            <input type="text" name="desc" placeholder="Описание (необязательно)">
+            <button type="submit">Добавить</button>
+            <button type="button" onclick="toggleForm('other')">Отмена</button>
+        </form>
+    </div>
     <script src="script.js"></script>
 </body>
 </html> 
