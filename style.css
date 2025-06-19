@@ -186,15 +186,15 @@ p {
         margin-bottom: 4px;
     }
     .theme-toggle-row {
-        justify-content: flex-end;
-        margin: 6px 0 10px 0;
-        max-width: 100vw;
+        flex-direction: column;
+        gap: 4px;
+        align-items: stretch;
     }
-    #theme-toggle {
-        margin-right: 8px;
+    .fridge-left, .theme-right {
+        justify-content: center;
     }
-    .add-form {
-        padding: 10px 4px;
+    .spacer {
+        display: none;
     }
 }
 .categories-title {
@@ -207,13 +207,28 @@ p {
 
 .theme-toggle-row {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     margin: 10px 0 18px 0;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
     gap: 12px;
+}
+.fridge-left {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.theme-right {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.spacer {
+    flex: 0 0 40px;
 }
 #theme-toggle {
     position: static;
@@ -383,4 +398,77 @@ body.dark-theme #fridge-add-input {
     border-radius: 4px;
     padding: 6px 12px;
     cursor: pointer;
+}
+
+/* Модальное окно подтверждения */
+.modal-confirm {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background: #fff;
+    color: #222;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 28px 24px 18px 24px;
+    min-width: 260px;
+    max-width: 90vw;
+    text-align: center;
+    animation: modalIn 0.18s;
+}
+@keyframes modalIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.modal-message {
+    font-size: 1.1em;
+    margin-bottom: 18px;
+}
+.modal-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+#modal-yes {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 1em;
+    cursor: pointer;
+}
+#modal-no {
+    background: #ccc;
+    color: #222;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 1em;
+    cursor: pointer;
+}
+body.dark-theme .modal-content {
+    background: #23272f;
+    color: #e0e3e8;
+}
+body.dark-theme #modal-no {
+    background: #444b5a;
+    color: #e0e3e8;
+}
+
+.current-fridge {
+    text-align: center;
+    font-size: 1.15em;
+    color: #254a91;
+    margin-bottom: 8px;
+    margin-top: 0;
+    font-weight: 500;
+}
+body.dark-theme .current-fridge {
+    color: #b3c7f9;
 } 
