@@ -268,4 +268,17 @@ body.dark-theme .delete-btn {
 body.dark-theme .delete-btn:hover, body.dark-theme .delete-btn:focus {
     background: #b71c1c;
     color: #fff;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+.product-text {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 } 
