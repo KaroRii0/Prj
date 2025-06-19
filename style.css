@@ -4,7 +4,48 @@ body {
     padding: 0;
     background: #f4f4f4;
     color: #222;
+    transition: background 0.3s, color 0.3s;
 }
+
+body.dark-theme {
+    background: #181c22;
+    color: #e0e3e8;
+}
+body.dark-theme .category {
+    background: #23272f;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+body.dark-theme .category-header {
+    color: #b3c7f9;
+}
+body.dark-theme .add-btn {
+    background: #254a91;
+    color: #fff;
+}
+body.dark-theme .add-btn:hover {
+    background: #3366cc;
+}
+body.dark-theme .product-list li {
+    background: #232b38;
+    color: #e0e3e8;
+}
+body.dark-theme .add-form input {
+    background: #23272f;
+    color: #e0e3e8;
+    border: 1px solid #444b5a;
+}
+body.dark-theme .add-form button[type="submit"] {
+    background: #388e3c;
+    color: #fff;
+}
+body.dark-theme .add-form button[type="button"] {
+    background: #444b5a;
+    color: #e0e3e8;
+}
+body.dark-theme .categories-title {
+    color: #b3c7f9;
+}
+
 h1 {
     color: #3366cc;
     text-align: center;
@@ -99,4 +140,21 @@ p {
     margin-bottom: 8px;
     font-size: 1.5em;
     color: #3366cc;
+}
+
+#theme-toggle {
+    background: #fff;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: background 0.2s, color 0.2s;
+}
+body.dark-theme #theme-toggle {
+    background: #23272f;
+    color: #e0e3e8;
+    border: 1px solid #444b5a;
 } 
