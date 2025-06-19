@@ -9,6 +9,16 @@
 <body>
     <h1>Добро пожаловать!</h1>
     <div class="theme-toggle-row">
+        <div class="fridge-list-row">
+            <button id="fridge-list-toggle">Холодильники</button>
+            <div id="fridge-list-dropdown" class="fridge-list-dropdown" style="display:none;">
+                <ul id="fridge-list"></ul>
+                <form id="fridge-add-form">
+                    <input type="text" id="fridge-add-input" placeholder="Название холодильника" required>
+                    <button type="submit">Добавить</button>
+                </form>
+            </div>
+        </div>
         <button id="theme-toggle">🌙 Тёмная тема</button>
     </div>
     <!-- <p>Это базовая заготовка для проекта на HTML, CSS и JS.</p> -->
