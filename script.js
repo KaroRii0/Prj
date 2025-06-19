@@ -57,5 +57,28 @@ function renderAllCategories() {
 
 document.addEventListener('DOMContentLoaded', function() {
     renderAllCategories();
+    // Тема
+    const themeBtn = document.getElementById('theme-toggle');
+    function setTheme(mode) {
+        if (mode === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeBtn.textContent = '☀️ Светлая тема';
+        } else {
+            document.body.classList.remove('dark-theme');
+            themeBtn.textContent = '🌙 Тёмная тема';
+        }
+    }
+    // Проверяем localStorage или системную тему
+    let theme = localStorage.getItem('theme');
+    if (!theme) {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    setTheme(theme);
+    themeBtn.addEventListener('click', function() {
+        const isDark = document.body.classList.toggle('dark-theme');
+        const newTheme = isDark ? 'dark' : 'light';
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
     console.log('Страница загружена и готова к работе!');
 }); 
