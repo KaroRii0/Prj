@@ -26,11 +26,26 @@ function renderCategory(category) {
     list.innerHTML = '';
     const data = getStorage();
     const items = data[category] || [];
-    items.forEach(item => {
+    items.forEach((item, idx) => {
         const li = document.createElement('li');
         li.textContent = item;
+        // Кнопка удаления
+        const delBtn = document.createElement('button');
+        delBtn.className = 'delete-btn';
+        delBtn.title = 'Удалить';
+        delBtn.innerHTML = '✖';
+        delBtn.onclick = function() { deleteProduct(category, idx); };
+        li.appendChild(delBtn);
         list.appendChild(li);
     });
+}
+
+function deleteProduct(category, idx) {
+    const data = getStorage();
+    if (!data[category]) return;
+    data[category].splice(idx, 1);
+    setStorage(data);
+    renderCategory(category);
 }
 
 function addProduct(event, category) {
