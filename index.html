@@ -9,20 +9,35 @@
 <body>
     <h1>Добро пожаловать!</h1>
     <div class="theme-toggle-row">
-        <div class="fridge-list-row">
-            <button id="fridge-list-toggle">Холодильники</button>
-            <div id="fridge-list-dropdown" class="fridge-list-dropdown" style="display:none;">
-                <ul id="fridge-list"></ul>
-                <form id="fridge-add-form">
-                    <input type="text" id="fridge-add-input" placeholder="Название холодильника" required>
-                    <button type="submit">Добавить</button>
-                </form>
+        <div class="fridge-left">
+            <div class="fridge-list-row">
+                <button id="fridge-list-toggle">Холодильники</button>
+                <div id="fridge-list-dropdown" class="fridge-list-dropdown" style="display:none;">
+                    <ul id="fridge-list"></ul>
+                    <form id="fridge-add-form">
+                        <input type="text" id="fridge-add-input" placeholder="Название холодильника" required>
+                        <button type="submit">Добавить</button>
+                    </form>
+                </div>
             </div>
         </div>
-        <button id="theme-toggle">🌙 Тёмная тема</button>
+        <div class="spacer"></div>
+        <div class="theme-right">
+            <button id="theme-toggle">🌙 Тёмная тема</button>
+        </div>
+    </div>
+    <div id="modal-confirm" class="modal-confirm" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-message">Вы уверены, что хотите удалить этот холодильник?</div>
+            <div class="modal-actions">
+                <button id="modal-yes">Да</button>
+                <button id="modal-no">Нет</button>
+            </div>
+        </div>
     </div>
     <!-- <p>Это базовая заготовка для проекта на HTML, CSS и JS.</p> -->
     <h2 class="categories-title">Категории продуктов</h2>
+    <div class="current-fridge"><span id="current-fridge-name"></span></div>
     <div class="categories-grid">
         <div class="category">
             <div class="category-header">
